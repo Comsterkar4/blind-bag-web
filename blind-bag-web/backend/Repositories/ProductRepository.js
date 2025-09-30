@@ -1,15 +1,30 @@
+// backend/repositories/ProductRepository.js
 const db = require('../../database');
-const getAllProducts = (callback) => {
-    db.query("SELECT * FROM products ORDER BY id ASC", callback);
-};
 
-const addProduct = (product, callback) => {
-    const { name, price, description, image } = product;
-    db.query(
-        "INSERT INTO products (name, price, description, image) VALUES (?, ?, ?, ?)",
-        [name, price, description, image],
-        callback
-    );
-};
+class ProductRepository {
 
-module.exports = { getAllProducts, addProduct };
+  // Lấy tất cả sản phẩm
+  static getAllProducts() {
+    return new Promise((resolve, reject) => {
+      db.query("SELECT * FROM products ORDER BY id ASC", (err, results) => {
+        if (err) reject(err);
+        else resolve(results);
+      });
+    });
+  }
+
+  // Thêm sản phẩm mới
+  static addProduct(product) {
+    return new Promise((resolve, reject) => {
+      const { name, description, price, image } = product;
+      const query = "INSERT INTO products (name, description, price, image) VALUES (?, ?, ?, ?)";
+      db.query(query, [name, description, price, image], (err, result) => {
+        if (err) reject(err);
+        else resolve({ id: result.insertId, ...product });
+      });
+    });
+  }
+}
+
+// Export class luôn, hoặc export methods nếu muốn
+module.exports = ProductRepository;

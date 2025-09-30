@@ -1,14 +1,16 @@
-// backend/services/productService.js
-const productRepo = require('../repositories/ProductRepository'); // chữ r thường
+const ProductRepository = require('../repositories/ProductRepository');
 
-const listProducts = (callback) => {
-    // Có thể thêm validate, filter, sort ở đây
-    productRepo.getAllProducts(callback);
-};
+class ProductService {
+    // Lấy danh sách sản phẩm
+    static async listProducts() {
+        return await ProductRepository.getAllProducts();
+    }
 
-const createProduct = (product, callback) => {
-    // Có thể thêm validate dữ liệu trước khi insert
-    productRepo.addProduct(product, callback);
-};
+    // Tạo sản phẩm mới
+    static async createProduct(data) {
+        // TODO: validate dữ liệu tại đây (ví dụ: check price > 0, name không rỗng)
+        return await ProductRepository.addProduct(data);
+    }
+}
 
-module.exports = { listProducts, createProduct };
+module.exports = ProductService;

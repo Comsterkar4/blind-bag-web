@@ -15,6 +15,7 @@ app.use(express.json());
 // Routes
 app.use('/api/products', productRoutes);
 
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server chạy tại http://localhost:${PORT}`);

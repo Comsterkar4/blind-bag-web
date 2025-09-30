@@ -1,19 +1,23 @@
-// backend/controllers/productController.js
-const productService = require('../Services/ProductService');
+const ProductService = require('../Services/ProductService'); // viết hoa P
 
-const getProducts = (req, res) => {
-    productService.listProducts((err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
-    });
-};
+class ProductController {
+  static async getProducts(req, res) {
+    try {
+      const products = await ProductService.listProducts(); // ✅ giờ đúng
+      res.json(products);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 
-const addProduct = (req, res) => {
-    const product = req.body;
-    productService.createProduct(product, (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ id: result.insertId, ...product });
-    });
-};
+  static async addProduct(req, res) {
+    try {
+      const newProduct = await ProductService.createProduct(req.body);
+      res.status(201).json(newProduct);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+}
 
-module.exports = { getProducts, addProduct };
+module.exports = ProductController;
