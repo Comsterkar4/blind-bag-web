@@ -11,7 +11,8 @@ function validateProduct(req, res, next) {
     return res.status(400).json({ message: "Giá sản phẩm không hợp lệ" });
   }
 
-  next(); // hợp lệ → tiếp tục xuống controller
+  next();
+  
 }
 
 module.exports = validateProduct;

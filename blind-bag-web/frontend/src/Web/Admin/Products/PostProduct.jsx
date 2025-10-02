@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PostProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const navigate = useNavigate();
+
+  const handlequaylai = (id) => {
+    navigate('/admin/Product');
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,6 +90,7 @@ function PostProduct() {
         </div>
         <button type="submit">Thêm sản phẩm</button>
       </form>
+      <button className="sua-btn" onClick={() => handlequaylai()}>Quay lai</button>
     </div>
   );
 }

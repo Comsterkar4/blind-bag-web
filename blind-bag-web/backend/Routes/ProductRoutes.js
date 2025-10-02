@@ -5,11 +5,11 @@ const productController = require('../Controllers/ProductController');
 // GET danh sách sản phẩm
 const validateProduct = require('../Validators/ProductValidator');
 
+// thoong qua validata trc ms guiwr ddeens controller
 router.post('/', validateProduct, productController.addProduct);
 
 router.get('/', productController.getProducts);
 
-// POST thêm sản phẩm
-router.post('/', productController.addProduct);  // <--- phải là '/' chứ không phải 'products'
+router.delete('/:id', productController.deleteProduct);
 
 module.exports = router;

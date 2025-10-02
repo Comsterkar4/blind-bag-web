@@ -8,6 +8,10 @@ class ProductService {
   static async createProduct(productData) {
     return await ProductRepository.addProduct(productData); // <- gọi repo
   }
+
+  static async removeProduct(id){
+    return await ProductRepository.deleteProduct(id);
+  }
 }
 
 module.exports = ProductService;
