@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const productRoutes = require('./backend/Routes/ProductRoutes'); // import routes Product
+const productRoutes = require('./backend/routes/ProductRoutes'); // import routes Product
 const db = require('./database'); // database.js nằm ở root
 
 const app = express();
