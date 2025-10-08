@@ -24,6 +24,18 @@ class ProductRepository {
       });
     });
   }
+    // thêm method updateProduct
+static updateProduct(id, product) {
+  return new Promise((resolve, reject) => {
+    const { name, description, price, image } = product;
+    const query = "UPDATE products SET name=?, description=?, price=?, image=? WHERE id=?";
+    db.query(query, [name, description, price, image, id], (err, result) => {
+      if (err) reject(err);
+      else resolve({ id: parseInt(id), ...product });
+    });
+  });
+}
+
   
   // xóa sản phẩm 
   static deleteProduct(id) {

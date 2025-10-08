@@ -2,6 +2,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import Product from "./Products/Product";
 import User from "./User";
 import PostProduct from "./Products/PostProduct";
+import EditProduct from "./Products/EditProduct";
+
 
 function AdminManagement() {
   return (
@@ -30,6 +32,7 @@ function AdminManagement() {
         <Route path="user" element={<User />} />
         <Route path="product" element={<Product/>} />
         <Route path ="product/post"element={<PostProduct />} />
+        <Route path="product/edit/:id" element={<EditProduct />} />
         <Route path="*" element={<h1>404 - Route không tồn tại</h1>} />
       </Routes>
     </div>

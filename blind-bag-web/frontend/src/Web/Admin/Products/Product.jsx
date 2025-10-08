@@ -13,14 +13,12 @@ function Product() {
       .catch(err => console.error("❌ Lỗi tải sản phẩm:", err));
   };
 
-  const handlesua = (id) => {
-    navigate(`/editProduct/${id}`);
-  }
+  // Sửa sản phẩm
+  const handleEdit = (id) => {
+    navigate(`/admin/product/edit/${id}`);
+  };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+  // Xóa sản phẩm
   const handleDelete = async (id) => {
     if (!window.confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
 
@@ -36,6 +34,10 @@ function Product() {
       alert("❌ Xóa thất bại");
     }
   };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="product-container">
@@ -55,7 +57,7 @@ function Product() {
             {p.image && (
               <img src={`/images/${p.image}`} alt={p.name} width="100" className="product-img" />
             )}
-            <button className="sua-btn" onClick={() => handlesua(p.id)}>Sửa</button>
+            <button className="sua-btn" onClick={() => handleEdit(p.id)}>Sửa</button>
             <button className="delete-btn" onClick={() => handleDelete(p.id)}>🗑️ Xóa</button>
           </li>
         ))}

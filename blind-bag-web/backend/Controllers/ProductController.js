@@ -23,6 +23,16 @@ class ProductController {
       res.status(500).json({ error: err.message });
     }
   }
+  static async updateProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const updatedProduct = await ProductService.updateProduct(id, req.body);
+      res.json(updatedProduct);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+    }
+  } 
   
   // 
   static async deleteProduct(req, res) {
