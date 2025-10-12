@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const productRoutes = require('./backend/routes/ProductRoutes'); // import routes Product
 const userRoutes = require('./backend/routes/UserRoutes');
+const AuthRoutes = require('./backend/routes/AuthRoutes');
 const db = require('./database'); // database.js nằm ở root
 
 const app = express();
@@ -15,8 +16,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/products', productRoutes);
-app.use('/api/user',userRoutes)
-
+app.use('/api/user',userRoutes);
+app.use('/api',AuthRoutes);
 
 // Start server
 app.listen(PORT, () => {
